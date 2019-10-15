@@ -1,0 +1,10 @@
+-# @userはeditアクションで設定しているもの。つまり情報を持っている状態
+-# form_withが自動でupdateにパスを送るようになっている(パス書く必要ない)
+-# model: @userは必須。パスを指定したい場合ははその後に書く。
+-# = form_with model: @user, url: user_path(@user), local: true do |f|
+= form_with model: @user, local: true do |f|
+  .field
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname, autocomplete: "nickname"
+    = f.submit

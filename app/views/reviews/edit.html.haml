@@ -1,0 +1,7 @@
+.content__title
+  投稿の編集
+= form_with model: @review do |f|
+  = f.text_field :title, placeholder: :タイトル, class: :form__title
+  = f.text_field :ski_field_name, placeholder: :スキー場名, class: :form__title
+  = f.text_area :text, placeholder: :ブログ本文, class: :form__text
+  = f.submit '投稿する',class: :form__btn

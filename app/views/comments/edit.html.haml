@@ -1,0 +1,7 @@
+.comment
+  - if current_user 
+    .content__title
+      コメントを編集する
+    = form_with url: review_comments_path(@comment.id), class: :form, local: true do |f|
+      = f.text_field :comment, placeholder: :コメント, class: :form__title
+      = f.submit '投稿する',class: :form__btn
