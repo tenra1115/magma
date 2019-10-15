@@ -64,3 +64,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-rails'
 gem 'compass-rails', '3.1.0'
 gem 'sprockets', '3.7.2'
+
+gem 'devise'
+
+gem 'erb2haml'
+# これがないとActionController::UnknownFormatみたいなエラーが出る
+gem 'haml-rails'
+
+gem 'jquery-rails'
+gem 'ratyrate'
+gem 'safe_attributes'

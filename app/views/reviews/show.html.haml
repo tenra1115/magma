@@ -1,0 +1,29 @@
+.top
+  .postTitle
+    = @review.title
+  .postDate
+    = @review.created_at
+  .postAuthor
+  - if user_signed_in? && current_user.id == @review.user_id
+    .postManage
+      = link_to "編集", edit_review_path(@review.id), class: "postManage__edi"
+      = link_to "削除", review_path(@review.id), method: :delete, class: "postManage__delete"
+  .postText
+    = simple_format @review.text
+.comment
+  - if current_user 
+    .content__title
+      コメントを追加する
+    = form_with url: review_comments_path(@review.id), class: :form, local: true do |f|
+      = f.text_field :comment, placeholder: :コメント, class: :form__title
+      = f.submit '投稿する',class: :form__btn
+  - @review.comments.each do |comment|
+    .tt
+      - if current_user.id == comment.user_id
+        .jiji
+          = link_to "削除", review_comments_path(comment), method: :delete, class: "postManage__edit"
+        -# = link_to "編集", edit_review_comments_path(comment), class: "postManage__edit"
+      .nickname
+        = comment.user.nickname
+      .comment
+        = comment.comment
