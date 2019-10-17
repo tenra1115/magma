@@ -1,8 +1,11 @@
 .top
   .postTitle
+    .small
+      = @review.user.nickname
+      さんの投稿
     = @review.title
   .postDate
-    = @review.created_at
+    = @review.created_at.strftime("%Y-%m-%d %H:%M")
   .postAuthor
   - if user_signed_in? && current_user.id == @review.user_id
     .postManage
@@ -10,6 +13,18 @@
       = link_to "削除", review_path(@review.id), method: :delete, class: "postManage__delete"
   .postText
     = simple_format @review.text
+  -# = render partial: 'likes/like', collection: @reviews, as: :review
+  %h3
+    いいね件数: 
+    = @review.likes.count
+  - if current_user.already_liked?(@review)
+    = button_to 'いいねを取り消す', review_like_path(@review), method: :delete
+  - else
+    = button_to 'いいね', review_likes_path(@review)
+  %h2 いいねしたユーザー
+  - @review.liked_users.each do |user|
+    = link_to user.nickname, user_path(user)
+
 .comment
   - if current_user 
     .content__title

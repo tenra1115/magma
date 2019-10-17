@@ -2,8 +2,8 @@ class ReviewsController < ApplicationController
   before_action :block, except: :index
 
   def index
-    # binding.pry
     @reviews = Review.includes(:user)
+    # binding.pry
   end
 
   def new
@@ -21,12 +21,16 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:id])
-    @review = review.update(review_params) if review.user_id == current_user.id
-    redirect_to review_path(@review)
+    if review.update(review_params) && review.user_id == current_user.id
+      redirect_to review_path(review)
+    else
+      render :edit
+    end
   end
 
   def show
     @review = Review.find(params[:id])
+    @like = Like.new
   end
 
   def destroy

@@ -1,7 +1,14 @@
 .postTitle
+  .profile
+    = @user.nickname
+    さんの自己紹介
+    .profile_sentense_box
+      .profile_sentense
+        = @user.one_sentense
+  = link_to "ユーザー情報を編集",  edit_user_path, class: "edit_name"
+.name_puts
   = @user.nickname
   さんの投稿一覧
-= link_to "編集",  edit_user_path
 
 - @reviews.each do |review|
   -# = render "reviews/review"
@@ -15,4 +22,8 @@
         .content__right__bottom--userName
           = link_to review.user.nickname, user_path(review.user), class: "content__right__bottom--userName--btn"
         .content__right__bottom--date
-          = review.created_at.strftime("%Y-%m-%d %H:%M")
+        = review.created_at.strftime("%Y-%m-%d %H:%M")
+%h3 いいねしている投稿
+- @user.liked_reviews.each do |review|
+  = review.user.nickname
+  = review.title

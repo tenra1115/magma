@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_092400) do
+ActiveRecord::Schema.define(version: 2019_10_15_090239) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment"
     t.integer "review_id", null: false
     t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_092400) do
     t.string "ski_field_name"
     t.integer "user_id"
     t.float "rate"
+    t.integer "likes_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

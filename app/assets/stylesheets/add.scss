@@ -9,3 +9,35 @@
   width: 10%;
   font-size: 12px;
 }
+.iine__button{
+  background: linear-gradient(to right, #feb400, #FFE300);
+  line-height: 42px;
+  color: #6d3701;
+  font-size: 14px;
+  display: inline-block;
+  padding: 0 18px;
+  border-radius: 100px;
+  font-weight: bold;
+}
+.profile_sentense_box{
+  height: 100px;
+  width: 50%;
+  margin: auto;
+  border: 1px solid;
+  padding: 10px;
+  overflow: auto;
+}
+.name_puts{
+  width: 90%;
+  margin: auto;
+}
+.profile_sentense{
+  font-size: 14px;
+}
+.small{
+  font-size: 13px;
+  width: 20%;
+}
+.postText{
+  border: 1px solid;
+}
