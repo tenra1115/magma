@@ -1,51 +1,10 @@
--# %body
--#   #main_cnt_wrapper
--#     #yjContentsBody
--#       .yjContainer
--#         %span.yjGuid
--#           %a#yjContentsStart{:name => "yjContentsStart"}
--#           %img{:alt => "ここから本文です", :height => "1", :src => "http://i.yimg.jp/yui/jp/tmpl/1.1.0/audionav.gif", :width => "1"}/
--#         #yjMain
--#           %article.section
--#             .container
--#               %header.header.header--section
--#                 %h2.text-middle
--#                   %i.icon-movie.color-gray-light>
--#                   投稿
--#               %div
--#                 %ul.listview.js-lazy-load-images
--#                   %li{:style => "margin-bottom: 15px"}
--#                     %a.listview__element--right-icon{:href => "#"}
--#                       .box
--#                         .box__cell.w80
--#                           .thumbnail.thumbnail--photo
--#                             -# .thumbnail__figure{:style => "background-image: url(#{@product.image_url});"}
--#                         .box__cell.pl1em
--#                           %h3.text-middle.text-break.color-sub
--#                             -# = @product.title
--#                           %p.text-xsmall
--#                           %p.text-xsmall.opacity-60
--#             = form_with model:@review, local: true do |f|
--#               %div{:style => "margin: 8px 0"}
--#                 = f.label :ski_field_name, style: { 'margin-right' => 8 }
--#                 = f.text_field :ski_field_name, placeholder: 'ski_field_name', value: ''
--#               %div{:style => "margin: 8px 0"}
--#                 = f.label :評価, style: { 'margin-right' => 8 }
--#                 = f.number_field :rate, placeholder: '評価', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' }
--#               %div{:style => "margin: 8px 0"}
--#                 = f.text_area :text, placeholder: 'レビューを書いてね！', style: 'width: 100%;height: 300px;'
--#               .row
--#                 .col10.push1
--#                   = button_tag type: "submit", class: "btn btn--block" do
--#                     投稿する
--#                     %i.icon-arrow-right
--#         #yjSub
 .content__title
   新規記事の作成
 = form_with model: @review, class: :form, local: true do |f|
   = f.text_field :title, placeholder: :タイトル, class: :form__title
   = f.text_field :ski_field_name, placeholder: :スキー場名, class: :form__title
   = f.number_field :rate, placeholder: "評価", value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' }
+  = f.text_field :tag_list, value: @review.tag_list.join(','), placeholder: :タグ, class: "form-control"
   = f.text_area :text, placeholder: :口コミ内容, class: :form__text
   = f.submit '投稿する',class: :form__btn
 

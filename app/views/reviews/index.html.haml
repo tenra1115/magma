@@ -1,4 +1,17 @@
 - @reviews.each do |review|
   = render review
+.rank
+  .good
+    投稿イイねランキング
+  - @rankings.each.with_index do |review, i|
+    第
+    = i + 1
+    位
+    .rank_title
+      = review.title
+    .rank_name
+      = review.user.nickname
+      %br/
+
   
   -# = render 'likes/like', review: review

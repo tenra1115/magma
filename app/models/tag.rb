@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
-  belongs_to :review
-  belongs_to :tag, class_name:"Review"
+  validates :name,length:{maximum:50}
+  has_many :reviews, through: :review_tag
+  has_many :review_tag
 end
