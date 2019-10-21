@@ -1,5 +1,8 @@
-- @reviews.each do |review|
-  = render review
+.left-lock
+  .contents
+    .l
+      - @reviews.each do |review|
+        = render review
 .rank
   .good
     投稿イイねランキング

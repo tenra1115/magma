@@ -27,10 +27,11 @@ body{
     }
   }
   .contents{
+    float: left;
     margin: 30px auto 0;
     background-color: #fff;
     height: 600px;
-    width: 70%;
+    width: 80%;
     overflow: scroll;
     .content{
       padding: 10px;

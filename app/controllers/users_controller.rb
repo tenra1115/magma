@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @user = 
+  end
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
