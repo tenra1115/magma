@@ -1,3 +1,4 @@
+
 .postTitle
   .profile
     = @user.nickname
@@ -28,3 +29,4 @@
 - @user.liked_reviews.each do |review|
   = review.user.nickname
   = review.title
+.locked

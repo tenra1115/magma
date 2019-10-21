@@ -1,0 +1,12 @@
+%h3
+  いいね件数: 
+  = @review.likes.count
+.like-link#like-link
+  - if current_user.already_liked?(@review)
+    = button_to 'いいねを取り消す', review_like_path(@review.id), method: :delete, remote: true 
+  - else
+    = button_to 'いいね', review_likes_path(@review.id), remote: true 
+
+  %h2 いいねしたユーザー
+  - @review.liked_users.each do |user|
+    = link_to user.nickname, user_path(user)
