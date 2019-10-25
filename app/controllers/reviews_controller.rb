@@ -47,6 +47,14 @@ class ReviewsController < ApplicationController
     redirect_to root_path
   end
 
+  def dout
+    @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
+    # respond_to do |format|
+    #   JSON
+    # end
+    # binding.pry
+  end
+
   private
 
   def review_params

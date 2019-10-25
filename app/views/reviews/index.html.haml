@@ -16,9 +16,13 @@
       = review.user.nickname
       %br/
 .search
-  .search-area  検索
+  .search-area  ユーザー検索
   %input#inc_search_user{:type => "text"}/
-  = render "/users/list"
+  #user_list
+.search
+  .search-area  投稿検索
+  %input#inc_search_review{:type => "text"}/
+  #view_list
   -# #user_list
 
   
