@@ -15,6 +15,13 @@
     .rank_name
       = review.user.nickname
       %br/
+.search
+  .search-area  検索
+  %input#inc_search_user{:type => "text"}/
+  = render "/users/list"
+  -# #user_list
+
+  
 
   
   -# = render 'likes/like', review: review

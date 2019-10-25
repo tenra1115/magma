@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
   def index
-    @user = 
+    @users = User.where("nickname LIKE(?)", "%#{params[:man]}%").where.not(id: current_user.id) 
+   
+  # binding.pry
+    
   end
 
   def show
