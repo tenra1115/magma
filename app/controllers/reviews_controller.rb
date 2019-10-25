@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
   before_action :block, except: :index
 
   def index
-    @reviews = Review.includes(:user)
+    @reviews = Review.includes(:user).page(params[:page]).per(4).order('created_at DESC')
+    # binding.pry
     # Like.group(:review_id)#まず、記事の番号(review_id)が同じものにグループを分ける
     # order('count(review_id) desc')#それを、番号の多い順に並び替える
     # limit(5)#表示する最大数を3個に指定する
@@ -12,6 +13,7 @@ class ReviewsController < ApplicationController
     # Arel.sql()SQL インジェクションを防ぐために記述する
     @rankings = Review.find(Like.group(:review_id).order(Arel.sql('count(review_id) desc')).limit(3).pluck(:review_id))
     # binding.pry
+    # @reviews_kaminari = Review
   end
 
   def new
