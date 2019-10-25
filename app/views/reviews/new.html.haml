@@ -1,3 +1,7 @@
+-# config/breadcrumbs.rbに定義したmypageを呼び出し
+- breadcrumb :review_create
+-# 下記を記述した箇所にパンくずリストが表示される。
+= breadcrumbs separator: " &rsaquo; "
 .content__title
   新規記事の作成
 = form_with model: @review, class: :form, local: true do |f|
