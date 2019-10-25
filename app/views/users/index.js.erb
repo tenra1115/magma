@@ -1,0 +1,9 @@
+$("#user_list").empty();
+<% @users.each_with_index do |user, i| %>
+  var team = `<div class="gu">
+                <%= link_to "#{user.nickname}", user_path(user.id) %>
+              </div>`
+      
+        $("#user_list").append(team)
+<% end %>
+

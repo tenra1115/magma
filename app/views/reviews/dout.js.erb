@@ -1,0 +1,8 @@
+$("#view_list").empty();
+<% @reviews_list.each do |review| %>
+  var html = `<div class="review_list">
+                <%= link_to "#{review.ski_field_name}",review_path(review.id) %>
+              </div>
+              `
+      $("#view_list").append(html);
+<% end %>

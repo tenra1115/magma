@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.where("nickname LIKE(?)", "%#{params[:man]}%").where.not(id: current_user.id) 
+   
+  # binding.pry
+    
+  end
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews

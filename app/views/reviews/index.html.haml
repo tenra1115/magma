@@ -1,5 +1,8 @@
-- @reviews.each do |review|
-  = render review
+.left-lock
+  .contents
+    .l
+      - @reviews.each do |review|
+        = render review
 .rank
   .good
     投稿イイねランキング
@@ -12,6 +15,11 @@
     .rank_name
       = review.user.nickname
       %br/
-
-  
-  -# = render 'likes/like', review: review
+.search
+  .search-area  ユーザー検索
+  %input#inc_search_user{:type => "text"}/
+  #user_list
+.search
+  .search-area  スキー場名検索
+  %input#inc_search_review{:type => "text"}/
+  #view_list
