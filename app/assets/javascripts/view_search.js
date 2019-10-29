@@ -10,7 +10,7 @@ $(function() {
     var title_view = $('#inc_search_review').val();
     $.ajax({
       type: 'GET', // リクエストのタイプはGETです
-      url: '/reviews/dout', // ユーザー検索を行なっているところに飛ばす
+      url: "/reviews", // ユーザー検索を行なっているところに飛ばす
       data: {view_title: title_view}, // コントローラへフォームの値を送信.teamは事前に定義してある
       dataType: 'script' // データの型はscriptで指定。htmlで使用するため
     })

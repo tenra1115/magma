@@ -4,12 +4,32 @@ class UsersController < ApplicationController
     @users = User.where("nickname LIKE(?)", "%#{params[:man]}%").where.not(id: current_user.id) 
    
   # binding.pry
-    
+     
   end
 
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
+    # binding.pry
+    # @reviews = @reviews.where(status: "1")
+
+    
+    # if current_user.id == @reviews.user.id
+    #   @reviewsss = @reviews.all
+    # else 
+    #   @reviewsw = @reviews.where(status: "1")
+    # end
+    # # @reviews_only = @reviews.where(review_id: current_user.id)
+    # binding.pry 
+
+
+    # @reviews.each do |review|
+    #   if review.user != current_user && review.status == "nonreleased"
+    #     review_block = review
+    #   elsif review.status == "released"
+    #     review_lock = review
+    #   end
+    # end
   end
 
   def edit

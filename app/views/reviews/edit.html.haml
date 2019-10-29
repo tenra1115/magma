@@ -8,3 +8,18 @@
   レビュー文
   = f.text_area :text, placeholder: :レビュー文, class: :form__text
   = f.submit '投稿する',class: :form__btn
+- if @review.released?
+  .l
+  .sell{value: "1"}
+    = link_to '非公開にする', nonrelease_review_path(@review.id), method: :patch, class: "jiji"
+    %label.btn.btn-default
+      %input.input{:autocomplete => "off", :type => "checkbox"}/
+
+
+- else
+  .l
+  .buy{value: "2"}
+    = link_to '公開する', release_review_path(@review.id), method: :patch
+    %label.btn.btn-default
+      %input.input{:autocomplete => "off", :type => "checkbox"}/
+  %p.check2 公開する

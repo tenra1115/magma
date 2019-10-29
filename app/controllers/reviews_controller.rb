@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :block, except: :index
+  before_action :review_block, except: :new
 
   def index
-    @reviews = Review.includes(:user).page(params[:page]).per(4).order('created_at DESC')
+    @reviews = Review.where(status: "1")
+    @reviews = @reviews.page(params[:page]).per(4).order('created_at DESC')
     # binding.pry
     # Like.group(:review_id)#まず、記事の番号(review_id)が同じものにグループを分ける
     # order('count(review_id) desc')#それを、番号の多い順に並び替える
@@ -12,8 +14,9 @@ class ReviewsController < ApplicationController
     # @ranking = Note.find()#最後に＠all_ranksに代入
     # Arel.sql()SQL インジェクションを防ぐために記述する
     @rankings = Review.find(Like.group(:review_id).order(Arel.sql('count(review_id) desc')).limit(3).pluck(:review_id))
-    # binding.pry
-    # @reviews_kaminari = Review
+
+    # スキー場名検索
+    @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
   end
 
   def new
@@ -22,6 +25,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.create(review_params)
+    # redirect_to check_review_path(@review)
     redirect_to root_path
   end
 
@@ -49,13 +53,26 @@ class ReviewsController < ApplicationController
     redirect_to root_path
   end
 
-  def dout
-    @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
-    # respond_to do |format|
-    #   JSON
-    # end
-    # binding.pry
+  # def dout
+  #   @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
+  # end
+
+  def release
+    review =  Review.find(params[:id])
+    review.released! unless review.released?
+    redirect_to edit_review_path(review), notice: 'この作品を公開しました'
   end
+
+  def nonrelease
+    review =  Review.find(params[:id])
+    review.nonreleased! unless review.nonreleased?
+    redirect_to edit_review_path(review), notice: 'この作品を非公開にしました'
+  end
+
+  def check 
+    @review = Review.find(params[:id])
+  end
+
 
   private
 
@@ -70,4 +87,15 @@ class ReviewsController < ApplicationController
       redirect_to new_user_registration_path
     end
   end
+
+  def review_block
+    @reviews = Review.where(status: "1")
+  end
+
+  # def set_enum
+  #   # o = request.original_url
+
+  #   # review = Review.find(params[5] || params[5])
+  #   # binding.pry
+  # end
 end
