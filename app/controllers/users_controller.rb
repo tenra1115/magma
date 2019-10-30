@@ -4,17 +4,17 @@ class UsersController < ApplicationController
     @users = User.where("nickname LIKE(?)", "%#{params[:man]}%").where.not(id: current_user.id) 
    
   # binding.pry
-    
+     
   end
 
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
+    @review_zero = @reviews.blank?
   end
 
   def edit
     @user = User.find(params[:id])
-    # binding.pry
   end
 
   def update

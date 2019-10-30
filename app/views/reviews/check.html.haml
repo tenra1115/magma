@@ -1,0 +1,4 @@
+- if @review.released?
+  = link_to '非公開にする', nonrelease_review_path(@review), method: :patch
+- unless @review.released?
+  = link_to '公開する', release_review_path(@review), method: :patch

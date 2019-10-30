@@ -76,3 +76,5 @@ gem 'ratyrate'
 gem 'safe_attributes'
 gem 'jquery-turbolinks'
 gem 'pry-rails'
+gem "gretel"
+gem 'kaminari'

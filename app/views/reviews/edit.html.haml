@@ -8,3 +8,9 @@
   レビュー文
   = f.text_area :text, placeholder: :レビュー文, class: :form__text
   = f.submit '投稿する',class: :form__btn
+- if @review.released?
+  %label.btn.btn-default
+    = link_to '非公開にする', nonrelease_review_path(@review.id), method: :patch
+- else
+  %label.btn.btn-default
+    = link_to '公開する', release_review_path(@review.id), method: :patch

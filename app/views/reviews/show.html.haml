@@ -1,8 +1,12 @@
+-# config/breadcrumbs.rbに定義したmypageを呼び出し
+- breadcrumb :review
+-# 下記を記述した箇所にパンくずリストが表示される。
+= breadcrumbs separator: " &rsaquo; "
 .contents2
   .top
     .postTitle
       .small
-        = @review.user.nickname
+        = link_to @review.user.nickname, user_path(@review.user_id)
         さんの投稿
       = @review.title
     .postDate
@@ -45,9 +49,9 @@
             = comment.user.nickname
           .comment
             = comment.comment
-  - if current_user.id == @review.user_id
-    .locked
-      %button 表示非表示
+  -# - if current_user.id == @review.user_id
+  -#   .locked
+  -#     %button 表示非表示
 
-  .mm
-    非表示解除
+  -# .mm
+  -#   非表示解除
