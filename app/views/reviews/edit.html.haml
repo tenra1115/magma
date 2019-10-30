@@ -5,6 +5,10 @@
   = f.text_field :title, placeholder: :タイトル, class: :form__title
   スキー場名
   = f.text_field :ski_field_name, placeholder: :スキー場名, class: :form__title
+  .field
+    %ul#article-tags
+    = hidden_field_tag :category_hidden,@category_list
+  = f.number_field :rate, placeholder: "評価", value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' }
   レビュー文
   = f.text_area :text, placeholder: :レビュー文, class: :form__text
   = f.submit '投稿する',class: :form__btn

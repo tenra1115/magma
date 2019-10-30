@@ -78,3 +78,4 @@ gem 'jquery-turbolinks'
 gem 'pry-rails'
 gem "gretel"
 gem 'kaminari'
+gem 'jquery-ui-rails'

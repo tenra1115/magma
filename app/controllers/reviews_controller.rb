@@ -5,7 +5,6 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.where(status: "1")
     @reviews = @reviews.page(params[:page]).per(4).order('created_at DESC')
-    # binding.pry
     # Like.group(:review_id)#まず、記事の番号(review_id)が同じものにグループを分ける
     # order('count(review_id) desc')#それを、番号の多い順に並び替える
     # limit(5)#表示する最大数を3個に指定する
@@ -31,6 +30,8 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @tags = @review.tags.map(:name).join(",")
+    binding.pry
   end
 
   def update
