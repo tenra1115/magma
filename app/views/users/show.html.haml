@@ -14,12 +14,12 @@
 .name_puts
   = @user.nickname
   さんの投稿一覧
-
+- if @review_zero
+  まだ投稿されてません 
 - @reviews.each do |review|
-
   -# レビューしたユーザーが現在のユーザーではない場合
   - if review.user_id != current_user.id && review.status == "nonreleased"
-    こんちわ
+    非公開の投稿です
   - else
     .content
       .content__left
