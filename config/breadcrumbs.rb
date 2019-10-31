@@ -19,6 +19,10 @@ crumb :review_create do
   link "レビュー作成", new_review_path
 end
 
+crumb :review_edit do
+  link "レビュー編集", edit_review_path
+end
+
 
 
 # crumb :projects do

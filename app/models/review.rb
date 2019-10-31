@@ -1,4 +1,7 @@
 class Review < ApplicationRecord
+
+  acts_as_taggable
+  
   # 非公開状態を０とし、公開状態を１とする
   enum status:{nonreleased: 0, released: 1}
 

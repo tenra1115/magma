@@ -79,3 +79,5 @@ gem 'pry-rails'
 gem "gretel"
 gem 'kaminari'
 gem 'jquery-ui-rails'
+gem 'gon'
+gem 'acts-as-taggable-on'

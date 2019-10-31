@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :block, except: :index
   before_action :review_block, except: :new
+  before_action :gon_get_tags, only: [:edit], except: :new
 
   def index
     @reviews = Review.where(status: "1")
@@ -30,8 +31,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    @tags = @review.tags.map(:name).join(",")
-    binding.pry
+    # @tags = @review.tags.map(:name).join(",")
   end
 
   def update
@@ -93,10 +93,11 @@ class ReviewsController < ApplicationController
     @reviews = Review.where(status: "1")
   end
 
-  # def set_enum
-  #   # o = request.original_url
-
-  #   # review = Review.find(params[5] || params[5])
-  #   # binding.pry
-  # end
+  def gon_get_tags
+    @review = Review.find(params[:id])
+    gon.t = @review.title
+    # gonと言うGEMによりここからJSにデータを遅れる
+    gon.get_used_tags = @review.tag_list
+    # binding.pry
+  end
 end
