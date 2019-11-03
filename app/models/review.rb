@@ -1,13 +1,14 @@
 class Review < ApplicationRecord
 
   acts_as_taggable
-  
+
   # 非公開状態を０とし、公開状態を１とする
   enum status:{nonreleased: 0, released: 1}
 
   # reviewが削除されたらそれに紐づくreview_tagも削除される
-  has_many :review_tags, dependent: :destroy
-  has_many :tags, through: :review_tags
+  has_many :tags
+  # has_many :review_tags, dependent: :destroy
+  # has_many :tags, through: :review_tags
 
   # has_many :tags, class_name: "Tag", foreign_key: :tag_id
   has_many :comments

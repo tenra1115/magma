@@ -17,6 +17,25 @@ class ReviewsController < ApplicationController
 
     # スキー場名検索
     @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
+
+    # タグ名検索
+    @tags = Review.all_tags
+
+    if params[:tag_name]
+      @tags_get_reviews = Review.tagged_with("#{params[:tag_name]}")
+      # binding.pry
+    end
+    # -@tag.each do |o|
+
+    # binding.pry
+    # if params[:tag_name]
+    #   @tasks = @tag.tagged_with("#{params[:tag_name]}")
+    # else
+    #   return
+    # end
+    # @tags_list = params[:tag].present? ? Review.tagged_with(params[:tag]) : Review.all
+    # @tags_lists = @tags_list.includes(:tags)
+    # g = Review.where("tag LIKE(?)", "%#{params[:tag]}%")
   end
 
   def new

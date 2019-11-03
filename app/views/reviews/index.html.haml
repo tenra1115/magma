@@ -28,7 +28,10 @@
   %input#inc_search_review{:type => "text"}/
   #view_list
 .search
-  .search-area  タグ検索
-  %input#inc_search_tag{:type => "text"}/
-  #view_list
+  .search-area タグ一覧
+  = render "tag"
+- if @tags_get_reviews.present?
+  .search
+    .search-area タグ一覧
+    = render "tag_review"
 
