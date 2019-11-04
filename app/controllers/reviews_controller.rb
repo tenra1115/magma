@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :block, except: :index
   before_action :review_block, except: :new
+  before_action :gon_get_tags, only: [:edit], except: :new
 
   def index
     @reviews = Review.where(status: "1")
     @reviews = @reviews.page(params[:page]).per(4).order('created_at DESC')
-    # binding.pry
     # Like.group(:review_id)#まず、記事の番号(review_id)が同じものにグループを分ける
     # order('count(review_id) desc')#それを、番号の多い順に並び替える
     # limit(5)#表示する最大数を3個に指定する
@@ -17,6 +17,25 @@ class ReviewsController < ApplicationController
 
     # スキー場名検索
     @reviews_list = Review.where("ski_field_name LIKE(?)", "%#{params[:view_title]}%")
+
+    # タグ名検索
+    @tags = Review.all_tags
+
+    if params[:tag_name]
+      @tags_get_reviews = Review.tagged_with("#{params[:tag_name]}")
+      # binding.pry
+    end
+    # -@tag.each do |o|
+
+    # binding.pry
+    # if params[:tag_name]
+    #   @tasks = @tag.tagged_with("#{params[:tag_name]}")
+    # else
+    #   return
+    # end
+    # @tags_list = params[:tag].present? ? Review.tagged_with(params[:tag]) : Review.all
+    # @tags_lists = @tags_list.includes(:tags)
+    # g = Review.where("tag LIKE(?)", "%#{params[:tag]}%")
   end
 
   def new
@@ -31,6 +50,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    # @tags = @review.tags.map(:name).join(",")
   end
 
   def update
@@ -92,10 +112,11 @@ class ReviewsController < ApplicationController
     @reviews = Review.where(status: "1")
   end
 
-  # def set_enum
-  #   # o = request.original_url
-
-  #   # review = Review.find(params[5] || params[5])
-  #   # binding.pry
-  # end
+  def gon_get_tags
+    @review = Review.find(params[:id])
+    gon.t = @review.title
+    # gonと言うGEMによりここからJSにデータを遅れる
+    gon.get_used_tags = @review.tag_list
+    # binding.pry
+  end
 end

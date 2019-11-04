@@ -5,6 +5,7 @@
     %title Skippo
     = csrf_meta_tags
     = csp_meta_tag
+    = include_gon(:init => true)
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'false'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'false'

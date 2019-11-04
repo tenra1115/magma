@@ -27,3 +27,11 @@
   .search-area  スキー場名検索
   %input#inc_search_review{:type => "text"}/
   #view_list
+.search
+  .search-area タグ一覧
+  = render "tag"
+- if @tags_get_reviews.present?
+  .search
+    .search-area 選択したタグに紐づいた投稿一覧
+    = render "tag_review"
+
